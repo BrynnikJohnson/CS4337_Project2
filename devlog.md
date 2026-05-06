@@ -8,3 +8,8 @@ and workstation requirements, ensuring that each employee works one shift at one
 * Initialize Repository
 * Implement the collecting of employees and workstations
 * Start on the employee assignment
+
+## May 5, 2026, 6:59 PM
+### Reflection
+I first made the logic to get all of the employees and workstations from the example inputs and put them into lists. Next, I created the logic to filter out any idle workstations. I then worked on figuring out how many employees should be in each
+shift. In my next session, I will work on assigning the employees to their shifts and work around any constraints they have. Overall, I would say this was a pretty lucrative session.
