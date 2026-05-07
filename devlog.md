@@ -13,3 +13,8 @@ and workstation requirements, ensuring that each employee works one shift at one
 ### Reflection
 I first made the logic to get all of the employees and workstations from the example inputs and put them into lists. Next, I created the logic to filter out any idle workstations. I then worked on figuring out how many employees should be in each
 shift. In my next session, I will work on assigning the employees to their shifts and work around any constraints they have. Overall, I would say this was a pretty lucrative session.
+
+## May 6, 2026, 7:29 PM
+### Plan for This Session
+* Work on assigning employees to workstations
+* Make sure employees' constraints are met
