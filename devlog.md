@@ -18,3 +18,7 @@ shift. In my next session, I will work on assigning the employees to their shift
 ### Plan for This Session
 * Work on assigning employees to workstations
 * Make sure employees' constraints are met
+
+## May 6, 2026, 
+### Reflection
+I finished the partitioning of the employees into shift groups while taking their constraints into consideration. In the next session, I need to complete the logic for assigning them to their workstations.
