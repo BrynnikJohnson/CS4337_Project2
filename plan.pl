@@ -24,6 +24,15 @@ plan(plan(Morning, Evening, Night)) :-
     order_employees(AllEmps, Sorted),
     partition_shifts(Sorted, MCount, ECount, NCount, MEmps, EEmps, NEmps),
 
+    % Assign within each shift to workstations
+    assign_to_stations(MEmps, MWSs, MRaw),
+    assign_to_stations(EEmps, EWSs, ERaw),
+    assign_to_stations(NEmps, NWSs, NRaw),
+
+    sort(MRaw, Morning),
+    sort(ERaw, Evening),
+    sort(NRaw, Night).
+
 get_active(Shift, All, Active) :-
     include(ws_active(Shift), All, Active).
 ws_active(Shift, ws(S,_,_)) :-
@@ -66,3 +75,32 @@ partition_shifts([Emp|Rest], MC, EC, NC, ME, EE, [Emp|NE]) :-
     \+ avoid_shift(Emp, night),
     NC1 is NC - 1,
     partition_shifts(Rest, MC, EC, NC1, ME, EE, NE).
+
+% assign_to_stations: distribute a shift's employees across its workstations
+
+assign_to_stations(Emps, WSs, Plan) :-
+    make_empty(WSs, Empty),
+    fill_stations(Emps, WSs, Empty, Plan),
+    valid_mins(WSs, Plan).
+
+make_empty([], []).
+make_empty([ws(S,_,_)|T], [workstation(S,[])|E]) :-
+    make_empty(T, E).
+
+valid_mins([], []).
+valid_mins([ws(S,Min,_)|Ts], [workstation(S,Ws)|Tp]) :-
+    length(Ws, C), C >= Min,
+    valid_mins(Ts, Tp).
+
+% fill_stations: assign each employee to a workstation, checking constraints
+fill_stations([], _, Plan, Plan).
+fill_stations([Emp|Rest], WSs, Plan, Final) :-
+    select(workstation(S, Ws), Plan, Remaining),
+    \+ avoid_workstation(Emp, S),
+    ws_max(S, WSs, Max),
+    length(Ws, C), C < Max,
+    NewPlan = [workstation(S, [Emp|Ws])|Remaining],
+    fill_stations(Rest, WSs, NewPlan, Final).
+
+ws_max(S, [ws(S,_,Max)|_], Max) :- !.
+ws_max(S, [_|T], Max) :- ws_max(S, T, Max).

@@ -27,3 +27,7 @@ I finished the partitioning of the employees into shift groups while taking thei
 ### Plan for This Session
 * Finish the workstation assignment
 * Test against sample inputs
+
+## May 7, 2026m 10:30 PM
+### Reflection
+I finished the assignment and everything seems to be working correctly. I tested the example inputs and they seem to be accurate compared to the example outputs.
